@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/mystation">
+
+	<!-- Required for local development to avoid conflicts in services/listeners on DEV related to the System Configurations in iCommand -->
+    <Environment name="myStation/configSchema" value="RahulProfile" type="java.lang.String" override="false"/>
+
+	<!-- Database connection information (simply modify the Environment value to match the Resource desired; add new Resources for additional options) -->
+    <Environment name="myStation/dataSource" value="java:/comp/env/jdbc/myStationDev" type="java.lang.String" override="false"/>
+    <Resource name="jdbc/myStationLocal" auth="Container" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        driverClassName="oracle.jdbc.driver.OracleDriver"
+        url="jdbc:oracle:thin:@//localhost:1521/xe" 
+        username="mystation" password="noitatsym"/>
+    <Resource name="jdbc/myStationDev" auth="Container" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        driverClassName="oracle.jdbc.driver.OracleDriver"
+        url="jdbc:oracle:thin:@//ibusdev5a.northamerica.cerner.net:1521/xe" 
+        username="myst_53_dev" password="myst_53_dev" />
+	<Resource name="jdbc/myStationIntegration" auth="Container" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        driverClassName="oracle.jdbc.driver.OracleDriver"
+        url="jdbc:oracle:thin:@//ibusdev5a.northamerica.cerner.net:1521/xe" 
+        username="myst_53_integration" password="myst_53_integration" />
+
+	<!-- iBus connection parameters (Broker location is optional and should normally be blank)-->
+    <Environment name="ibus/envName" value="DWXDEV" type="java.lang.String" override="false"/>
+    <Environment name="ibus/directoryLocation" value="tcp://10.184.2.83:6506,tcp://10.184.2.84:6506" type="java.lang.String" override="false"/>
+    <Environment name="ibus/brokerLocation" value="" type="java.lang.String" override="false"/>
+
+	<!-- Provide the Millennium connection parameters -->
+    <Environment name="millennium/domainName" value="rad2012_01.northamerica.cerner.net" type="java.lang.String" override="false"/>
+    <Environment name="millennium/userName" value="system" type="java.lang.String" override="false"/>
+    <Environment name="millennium/userPassword" value="system" type="java.lang.String" override="false"/>
+    <Resource name="jdbc/MillenniumDB" auth="Container" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        driverClassName="oracle.jdbc.driver.OracleDriver"
+        url="jdbc:oracle:thin:@//ip1201ar:1521/1201e1" 
+        username="v500" password="v500"/>
+
+</Context>
